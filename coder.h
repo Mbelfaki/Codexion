@@ -49,6 +49,7 @@ struct					Coder_s
 	int					id;
 	Dongle_t			*dongle_left;
 	Dongle_t			*dongle_right;
+	pthread_mutex_t		*commen_lock;
 	
 };
 Dongle_t				*request_dongle(Coder_t *Coder, int i);

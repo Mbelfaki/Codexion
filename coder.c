@@ -55,9 +55,9 @@ void	release_dongles(Coder_t *Coder)
 	pthread_mutex_unlock(Coder->dongle_left->lock);
 }
 void display_data(Coder_t *Coder, char * massge){
-		pthread_mutex_lock(Coder->dongle_right->lock);
-		printf("%ld %d  %s\n",massge, get_time() - Coder->data->time,Coder->id);
-		pthread_mutex_lock(Coder->dongle_right->lock);
+		pthread_mutex_lock(Coder->commen_lock);
+		printf("%ld %d  %s\n", get_time() - Coder->data->time,Coder->id,massge);
+		pthread_mutex_lock(Coder->commen_lock);
 
 }
 void	*coder_thread(void *arg)
