@@ -1,14 +1,9 @@
 #ifndef QUEUE_H
-#define QUEUE_H
-typedef struct coder_s{
+# define QUEUE_H
 
-int danglo_left;
-
-int danglo_right;
-
-
-}coder_t;
-coder_t * create_qeue(int number);
-
-
+# include "coder.h"
+queue_t	*create_queue(int size);
+void	enqueue(queue_t *queue, Coder_t *coder);
+Coder_t	*dequeue(queue_t *queue);
+Bool	istop(queue_t *queue, Coder_t *coder);
 #endif
