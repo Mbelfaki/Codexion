@@ -1,7 +1,7 @@
-CC = gcc
-CFLAGS = -Wall -Wextra -Werror
-TARGET = program
-SRC = main.c  parcing.c queue.c coder.c
+CC = cc
+TARGET = codexion
+CFLAGS = -Werror -Wall -Wextra -pthread
+SRC = src/main.c  src/parcing.c src/queue.c src/coder.c src/dongle.c src/monitoring.c src/tool.c src/thread.c src/free_data.c src/utiles.c src/heap.c src/check.c
 OBJ = $(SRC:.c=.o)
 
 all: $(TARGET)
@@ -9,10 +9,13 @@ all: $(TARGET)
 $(TARGET): $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) -o $(TARGET)
 
-%.o: %.c *h
+%.o: %.c src/codexion.h
 	$(CC) $(CFLAGS) -c $< -o  $@
 
-run:
-	./program 2  1 1  1000  100 1 1000  fifo
 clean:
-	rm -f  *.o
+	rm -f src/*.o
+
+fclean: clean
+	rm -f codexion
+
+re: fclean all

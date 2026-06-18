@@ -6,24 +6,27 @@
 /*   By: mbelfaki <mbelfaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/02 11:19:26 by mbelfaki          #+#    #+#             */
-/*   Updated: 2026/04/02 12:39:37 by mbelfaki         ###   ########.fr       */
+/*   Updated: 2026/06/13 10:20:32 by mbelfaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "coder.h"
-#include "parcing.h"
-#include "queue.h"
+#include "codexion.h"
 
 int	main(int argc, char **argv)
 {
-	Data_t		*data;
-	pthread_t	*thread_list;
+	t_data			*data;
+	pthread_t		*thread_list;
+	t_monitor_arg	*monitor_arg;
 
 	if (!cheak_arges(argc, &argv[1]))
-		return (0);
+		return (1);
 	data = getdata(argc, &argv[1]);
-	thread_list = malloc(sizeof(pthread_t) * data->values[0]);
-	if(!thread_list)
-	printf("wwww4\n");
-	create_list_thread(data, thread_list, coder_thread);
+	thread_list = malloc(sizeof(pthread_t) * (data->values[0] + 1));
+	if (!thread_list)
+		return (1);
+	monitor_arg = create_list_thread(data, thread_list, coder_thread);
+	if (monitor_arg)
+		free_coders(monitor_arg);
+	free(thread_list);
+	return (0);
 }
