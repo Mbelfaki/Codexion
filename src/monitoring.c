@@ -6,7 +6,7 @@
 /*   By: mbelfaki <mbelfaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/09 18:00:20 by mbelfaki          #+#    #+#             */
-/*   Updated: 2026/06/17 20:11:09 by mbelfaki         ###   ########.fr       */
+/*   Updated: 2026/06/18 17:09:35 by mbelfaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ t_Bool	monitor_cheak(t_monitor_arg *monitor_arg)
 					&monitor_arg->coders[0].dongle_left->cond);
 			return (FALSE);
 		}
-		usleep(100);
+		usleep(300);
 		i++;
 	}
 	return (TRUE);

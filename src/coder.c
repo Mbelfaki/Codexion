@@ -6,7 +6,7 @@
 /*   By: mbelfaki <mbelfaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/09 18:00:13 by mbelfaki          #+#    #+#             */
-/*   Updated: 2026/06/16 15:19:08 by mbelfaki         ###   ########.fr       */
+/*   Updated: 2026/06/18 17:06:15 by mbelfaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ void	*coder_thread(void *arg)
 	coder = (t_coder *)arg;
 	i = 0;
 	check_start(coder);
-	set_last_compiling(coder, get_time());
+	if (coder->id%2)
+		thread_sleep(coder->data->values[2]/2, coder);
 	while (i < coder->data->values[5] && !cheak_burnout(coder))
 	{
 		if (!get_dongles(coder))

@@ -6,7 +6,7 @@
 /*   By: mbelfaki <mbelfaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/09 18:00:08 by mbelfaki          #+#    #+#             */
-/*   Updated: 2026/06/06 15:56:57 by mbelfaki         ###   ########.fr       */
+/*   Updated: 2026/06/18 17:36:48 by mbelfaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,13 @@ t_dongle	*request_dongle(t_coder *coder, int i)
 t_Bool	get_dongle(t_dongle *dongle, t_coder *coder)
 {
 	pthread_mutex_lock(&dongle->lock);
-	if (dongle->taken)
+	while (dongle->taken)
 	{
 		pthread_cond_wait(&dongle->cond, &dongle->lock);
 	}
 	pthread_mutex_unlock(&dongle->lock);
 	while (!istop(dongle, coder) || get_clodown(dongle) > get_time())
-		;
+		usleep(300);
 	pthread_mutex_lock(&dongle->lock);
 	dequeue(dongle->queue, coder->data->algo);
 	dongle->taken = TRUE;

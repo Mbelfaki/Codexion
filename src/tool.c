@@ -6,7 +6,7 @@
 /*   By: mbelfaki <mbelfaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/11 12:28:21 by mbelfaki          #+#    #+#             */
-/*   Updated: 2026/04/28 10:19:16 by mbelfaki         ###   ########.fr       */
+/*   Updated: 2026/06/18 17:10:01 by mbelfaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ t_Bool	thread_sleep(long time, t_coder *coder)
 	{
 		if (cheak_burnout(coder))
 			return (TRUE);
-		usleep(500);
+		usleep(300);
 	}
 	return (FALSE);
 }

@@ -6,7 +6,7 @@
 /*   By: mbelfaki <mbelfaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/12 18:45:11 by mbelfaki          #+#    #+#             */
-/*   Updated: 2026/06/17 20:19:40 by mbelfaki         ###   ########.fr       */
+/*   Updated: 2026/06/18 16:51:51 by mbelfaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ t_Bool	create_locks(t_data *data, int number_lock)
 	int	i;
 
 	data->commen_locks = malloc(sizeof(pthread_mutex_t) * number_lock);
+	pthread_cond_init(&data->cond, NULL);
 	if (!data->commen_locks)
 		return (FALSE);
 	i = 0;
