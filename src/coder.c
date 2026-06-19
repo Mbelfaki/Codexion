@@ -6,7 +6,7 @@
 /*   By: mbelfaki <mbelfaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/09 18:00:13 by mbelfaki          #+#    #+#             */
-/*   Updated: 2026/06/19 10:04:35 by mbelfaki         ###   ########.fr       */
+/*   Updated: 2026/06/19 10:18:24 by mbelfaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,31 +15,15 @@
 void	*coder_thread(void *arg)
 {
 	t_coder	*coder;
-	int		i;
 
 	coder = (t_coder *)arg;
-	i = 0;
 	check_start(coder);
 	if (cheak_burnout(coder))
 		return (NULL);
 	if (coder->id % 2)
 		thread_sleep(coder->data->values[2] / 2, coder);
-	while (i < coder->data->values[5] && !cheak_burnout(coder))
-	{
-		if (!get_dongles(coder))
-			return (NULL);
-		display_data(coder, "is debugging");
-		if (thread_sleep(coder->data->values[3], coder))
-			return (NULL);
-		if (cheak_burnout(coder))
-			return (NULL);
-		display_data(coder, "is refactoring");
-		if (thread_sleep(coder->data->values[4], coder))
-			return (NULL);
-		if (cheak_burnout(coder))
-			return (NULL);
-		i++;
-	}
+	if(!thread_ruten(coder))
+		return NULL;
 	set_finched_flage(coder, TRUE);
 	return (NULL);
 }
