@@ -6,7 +6,7 @@
 /*   By: mbelfaki <mbelfaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/09 18:00:46 by mbelfaki          #+#    #+#             */
-/*   Updated: 2026/06/17 19:58:36 by mbelfaki         ###   ########.fr       */
+/*   Updated: 2026/06/18 18:30:03 by mbelfaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,7 @@ typedef struct s_monitor_arg
 t_dongle				*request_dongle(t_coder *coder, int i);
 void					release_dongles(t_coder *coder);
 t_monitor_arg			*create_list_thread(t_data *data,
-							pthread_t *thread_list,
-							void *(*coder_thread)(void *));
+							pthread_t *thread_list);
 void					thread_list_join(pthread_t *thread_list,
 							int thread_number);
 void					*coder_thread(void *arg);
@@ -114,5 +113,6 @@ int						get_best(t_queue *queue, int best, char *algo);
 int						higher_priority(t_coder *a, t_coder *b, char *algo);
 void					swap_queue(t_queue *queue, int i, int best);
 void					check_start(t_coder *coder);
-void start_simulation(t_data *data,t_coder *coder_list);
+void					start_simulation(t_data *data, t_coder *coder_list,
+							int thread_count);
 #endif

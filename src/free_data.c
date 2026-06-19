@@ -6,7 +6,7 @@
 /*   By: mbelfaki <mbelfaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/13 14:33:52 by mbelfaki          #+#    #+#             */
-/*   Updated: 2026/06/16 14:47:09 by mbelfaki         ###   ########.fr       */
+/*   Updated: 2026/06/18 18:50:27 by mbelfaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,12 @@ void	destroy(t_monitor_arg *monitor_arg)
 	int	i;
 
 	i = 0;
+	pthread_cond_destroy(&monitor_arg->coders[0].data->cond);
 	while (i < monitor_arg->number_coders)
+	{
 		pthread_mutex_destroy(&monitor_arg->coders[i++].dongle_left->lock);
+		pthread_cond_destroy(&monitor_arg->coders[i++].dongle_left->cond);
+	}
 	i = 0;
 	while (i < 5)
 		pthread_mutex_destroy(&monitor_arg->commen_locks[i++]);

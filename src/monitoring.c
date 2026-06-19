@@ -6,7 +6,7 @@
 /*   By: mbelfaki <mbelfaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/09 18:00:20 by mbelfaki          #+#    #+#             */
-/*   Updated: 2026/06/18 17:09:35 by mbelfaki         ###   ########.fr       */
+/*   Updated: 2026/06/18 18:55:16 by mbelfaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ t_Bool	monitor_cheak(t_monitor_arg *monitor_arg)
 void	*monitor_thread(void *arg)
 {
 	t_monitor_arg	*monitor_arg;
-	// printf("monitor thread\n");
+
 	monitor_arg = (t_monitor_arg *)arg;
 	check_start(&monitor_arg->coders[0]);
 	while (1)

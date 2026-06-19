@@ -6,7 +6,7 @@
 /*   By: mbelfaki <mbelfaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/09 18:00:13 by mbelfaki          #+#    #+#             */
-/*   Updated: 2026/06/18 17:06:15 by mbelfaki         ###   ########.fr       */
+/*   Updated: 2026/06/18 18:50:48 by mbelfaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,10 @@ void	*coder_thread(void *arg)
 	coder = (t_coder *)arg;
 	i = 0;
 	check_start(coder);
-	if (coder->id%2)
-		thread_sleep(coder->data->values[2]/2, coder);
+	if (cheak_burnout(coder))
+		return (NULL);
+	if (coder->id % 2)
+		thread_sleep(coder->data->values[2] / 2, coder);
 	while (i < coder->data->values[5] && !cheak_burnout(coder))
 	{
 		if (!get_dongles(coder))
@@ -47,9 +49,8 @@ void	thread_list_join(pthread_t *thread_list, int thread_number)
 	int	i;
 
 	i = 0;
-	while (i < thread_number + 1)
+	while (i < thread_number)
 	{
-		pthread_join(thread_list[i], NULL);
 		i++;
 	}
 }
