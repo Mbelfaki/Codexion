@@ -6,7 +6,7 @@
 /*   By: mbelfaki <mbelfaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/09 18:00:13 by mbelfaki          #+#    #+#             */
-/*   Updated: 2026/06/18 18:50:48 by mbelfaki         ###   ########.fr       */
+/*   Updated: 2026/06/19 10:04:35 by mbelfaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ void	thread_list_join(pthread_t *thread_list, int thread_number)
 	i = 0;
 	while (i < thread_number)
 	{
+		pthread_join(thread_list[i], NULL);
 		i++;
 	}
 }
