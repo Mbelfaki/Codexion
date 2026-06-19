@@ -6,7 +6,7 @@
 /*   By: mbelfaki <mbelfaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/09 18:00:46 by mbelfaki          #+#    #+#             */
-/*   Updated: 2026/06/19 10:20:56 by mbelfaki         ###   ########.fr       */
+/*   Updated: 2026/06/19 10:50:25 by mbelfaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,5 +115,9 @@ void					swap_queue(t_queue *queue, int i, int best);
 void					check_start(t_coder *coder);
 void					start_simulation(t_data *data, t_coder *coder_list,
 							int thread_count);
-t_Bool	thread_ruten(t_coder *coder);
+t_Bool					thread_ruten(t_coder *coder);
+void					check_thread_count(t_data *data, pthread_t *thread_list,
+							t_coder *coder_list, t_monitor_arg *monitor_arg);
+int						create_threads(t_data *data, pthread_t *thread_list,
+							t_coder *coder_list);
 #endif

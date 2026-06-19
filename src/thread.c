@@ -6,7 +6,7 @@
 /*   By: mbelfaki <mbelfaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/12 18:45:11 by mbelfaki          #+#    #+#             */
-/*   Updated: 2026/06/18 18:34:37 by mbelfaki         ###   ########.fr       */
+/*   Updated: 2026/06/19 10:50:44 by mbelfaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,14 +92,6 @@ t_monitor_arg	*create_list_thread(t_data *data, pthread_t *thread_list)
 	monitor_arg = create_monitor(data, coder_list);
 	if (!monitor_arg)
 		return (free(coder_list), free(dongle_list), monitor_arg);
-	thread_count = create_threads(data, thread_list, coder_list);
-	if (thread_count == data->values[0])
-		if (!pthread_create(&thread_list[data->values[0]], NULL, monitor_thread,
-				monitor_arg))
-			thread_count++;
-	if (thread_count != data->values[0] + 1)
-		*data->burnout_flage = TRUE;
-	start_simulation(data, coder_list, thread_count);
-	thread_list_join(thread_list, thread_count);
+	check_thread_count(data, thread_list, coder_list, monitor_arg);
 	return (monitor_arg);
 }

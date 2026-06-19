@@ -22,8 +22,8 @@ void	*coder_thread(void *arg)
 		return (NULL);
 	if (coder->id % 2)
 		thread_sleep(coder->data->values[2] / 2, coder);
-	if(!thread_ruten(coder))
-		return NULL;
+	if (!thread_ruten(coder))
+		return (NULL);
 	set_finched_flage(coder, TRUE);
 	return (NULL);
 }
