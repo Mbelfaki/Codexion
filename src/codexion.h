@@ -6,7 +6,7 @@
 /*   By: mbelfaki <mbelfaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/09 18:00:46 by mbelfaki          #+#    #+#             */
-/*   Updated: 2026/06/19 10:50:25 by mbelfaki         ###   ########.fr       */
+/*   Updated: 2026/06/20 13:07:42 by mbelfaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,4 +120,6 @@ void					check_thread_count(t_data *data, pthread_t *thread_list,
 							t_coder *coder_list, t_monitor_arg *monitor_arg);
 int						create_threads(t_data *data, pthread_t *thread_list,
 							t_coder *coder_list);
+t_monitor_arg			*free_data(t_coder *coder_list, t_dongle *dongle_list,
+							t_monitor_arg *monitor_arg);
 #endif

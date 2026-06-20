@@ -6,7 +6,7 @@
 /*   By: mbelfaki <mbelfaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/13 14:33:52 by mbelfaki          #+#    #+#             */
-/*   Updated: 2026/06/18 18:50:27 by mbelfaki         ###   ########.fr       */
+/*   Updated: 2026/06/20 13:07:37 by mbelfaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,14 @@ void	free_coders(t_monitor_arg *monitor_arg)
 	free(monitor_arg->coders);
 	free(monitor_arg->commen_locks);
 	free(monitor_arg);
+}
+
+t_monitor_arg	*free_data(t_coder *coder_list, t_dongle *dongle_list,
+		t_monitor_arg *monitor_arg)
+{
+	if (coder_list)
+		free(coder_list);
+	if (dongle_list)
+		free(dongle_list);
+	return (monitor_arg);
 }

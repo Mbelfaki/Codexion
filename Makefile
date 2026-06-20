@@ -1,6 +1,6 @@
 CC = cc
 TARGET = codexion
-CFLAGS = -Werror -Wall -Wextra -pthread -fsanitize=address
+CFLAGS = -Werror -Wall -Wextra -pthread
 SRC = src/main.c  src/parcing.c src/queue.c src/coder.c src/dongle.c src/monitoring.c src/tool.c src/thread.c src/free_data.c src/utiles.c src/heap.c src/check.c
 OBJ = $(SRC:.c=.o)
 

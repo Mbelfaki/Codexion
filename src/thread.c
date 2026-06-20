@@ -6,7 +6,7 @@
 /*   By: mbelfaki <mbelfaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/12 18:45:11 by mbelfaki          #+#    #+#             */
-/*   Updated: 2026/06/19 10:50:44 by mbelfaki         ###   ########.fr       */
+/*   Updated: 2026/06/20 13:06:28 by mbelfaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,9 @@ t_Bool	create_locks(t_data *data, int number_lock)
 	int	i;
 
 	data->commen_locks = malloc(sizeof(pthread_mutex_t) * number_lock);
-	pthread_cond_init(&data->cond, NULL);
 	if (!data->commen_locks)
+		return (FALSE);
+	if (pthread_cond_init(&data->cond, NULL))
 		return (FALSE);
 	i = 0;
 	while (i < number_lock)
@@ -85,13 +86,13 @@ t_monitor_arg	*create_list_thread(t_data *data, pthread_t *thread_list)
 		return (monitor_arg);
 	dongle_list = create_dongle(data);
 	if (!dongle_list)
-		return (free(coder_list), monitor_arg);
+		return (free_data(coder_list, NULL, monitor_arg));
 	if (!create_locks(data, 5))
-		return (free(coder_list), free(dongle_list), monitor_arg);
+		return (free_data(coder_list, dongle_list, monitor_arg));
 	init_coders(coder_list, data, dongle_list);
 	monitor_arg = create_monitor(data, coder_list);
 	if (!monitor_arg)
-		return (free(coder_list), free(dongle_list), monitor_arg);
+		return (free_data(coder_list, dongle_list, monitor_arg));
 	check_thread_count(data, thread_list, coder_list, monitor_arg);
 	return (monitor_arg);
 }
